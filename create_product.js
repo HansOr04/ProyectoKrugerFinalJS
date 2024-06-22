@@ -1,11 +1,12 @@
-// Shared Tailwind CSS classes
+// Define clases de Tailwind CSS compartidas para reutilización
 const inputClasses = "shadow appearance-none border rounded w-full py-2 px-3 text-zinc-700 dark:text-zinc-300 leading-tight focus:outline-none focus:shadow-outline";
 const labelClasses = "block text-zinc-700 dark:text-zinc-300 text-sm font-bold mb-2";
 const buttonClasses = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline";
 const errorClasses = "text-red-500 text-xs italic";
 
-// Create a new department
+// Define un componente personalizado para crear nuevos departamentos
 class NewDepartment extends HTMLElement {
+    // Se llama cuando el elemento se añade al DOM
     connectedCallback() {
         this.render();
         this.form = this.querySelector('form');
@@ -15,6 +16,7 @@ class NewDepartment extends HTMLElement {
         this.editingIndex = null;
     }
 
+    // Renderiza el formulario HTML
     render() {
         this.innerHTML = `
             <div class="bg-white dark:bg-zinc-800 min-h-screen flex flex-col items-center justify-center p-4">
@@ -39,36 +41,78 @@ class NewDepartment extends HTMLElement {
         `;
     }
 
-    createInput(labelText, id, type, placeholder, required = false) {
-        return `
-            <div class="w-full px-3 mb-6">
-                <label for="${id}" class="${labelClasses}">${labelText}</label>
-                <input type="${type}" id="${id}" name="${id}" class="${inputClasses}" placeholder="${placeholder}" ${required ? 'required' : ''}>
-            </div>
-        `;
-    }
+  // Crea un input HTML estándar
+createInput(labelText, id, type, placeholder, required = false) {
+    return `
+        <div class="w-full px-3 mb-6">
+            <!-- Crea una etiqueta para el input -->
+            <label for="${id}" class="${labelClasses}">${labelText}</label>
+            <!-- Crea el elemento input con los atributos especificados -->
+            <input 
+                type="${type}" 
+                id="${id}" 
+                name="${id}" 
+                class="${inputClasses}" 
+                placeholder="${placeholder}" 
+                ${required ? 'required' : ''}
+            >
+        </div>
+    `;
+    // Nota: La función retorna una cadena de HTML usando template literals
+}
 
-    createSelect(labelText, id, values, options, required = false) {
-        const optionsHtml = options.map((option, index) => `<option value="${values[index]}">${option}</option>`).join('');
-        return `
-            <div class="w-full px-3 mb-6">
-                <label for="${id}" class="${labelClasses}">${labelText}</label>
-                <select id="${id}" name="${id}" class="${inputClasses}" ${required ? 'required' : ''}>
-                    ${optionsHtml}
-                </select>
-            </div>
-        `;
-    }
+// Crea un select HTML (menú desplegable)
+createSelect(labelText, id, values, options, required = false) {
+    // Crea las opciones del select mapeando los arrays de valores y opciones
+    const optionsHtml = options.map((option, index) => 
+        `<option value="${values[index]}">${option}</option>`
+    ).join('');
+    
+    return `
+        <div class="w-full px-3 mb-6">
+            <!-- Crea una etiqueta para el select -->
+            <label for="${id}" class="${labelClasses}">${labelText}</label>
+            <!-- Crea el elemento select con las opciones generadas -->
+            <select 
+                id="${id}" 
+                name="${id}" 
+                class="${inputClasses}" 
+                ${required ? 'required' : ''}
+            >
+                ${optionsHtml}
+            </select>
+        </div>
+    `;
+    // Nota: Las opciones se insertan dinámicamente en el select
+}
 
-    createFileInput(labelText, id, required = false) {
-        return `
-            <div class="w-full px-3 mb-6">
-                <label for="${id}" class="${labelClasses}">${labelText}</label>
-                <input type="file" id="${id}" name="${id}" class="${inputClasses}" ${required ? 'required' : ''}>
-            </div>
-        `;
-    }
+// Crea un input de tipo file para la imagen
+createFileInput(labelText, id, required = false) {
+    return `
+        <div class="w-full px-3 mb-6">
+            <!-- Crea una etiqueta para el input de archivo -->
+            <label for="${id}" class="${labelClasses}">${labelText}</label>
+            <!-- Crea el input de tipo file -->
+            <input 
+                type="file" 
+                id="${id}" 
+                name="${id}" 
+                class="${inputClasses}" 
+                ${required ? 'required' : ''}
+            >
+        </div>
+    `;
+    // Nota: Este input es específico para archivos (imágenes en este caso)
+}
 
+// Características comunes de estas funciones:
+// - Utilizan template literals (` `) para crear strings de HTML dinámicamente.
+// - Usan interpolación de strings (${}) para insertar valores dinámicos en el HTML.
+// - Aplican clases CSS predefinidas (labelClasses, inputClasses) para mantener un estilo consistente.
+// - Devuelven una cadena de HTML que luego se insertará en el DOM.
+// - Utilizan el operador ternario (?:) para añadir condicionalmente el atributo 'required'.
+
+    // Maneja el envío del formulario
     handleSubmit(event) {
         event.preventDefault();
 
@@ -87,12 +131,12 @@ class NewDepartment extends HTMLElement {
 
         if (this.validateProduct(newProduct)) {
             if (this.editingIndex !== null) {
-                // Actualizar departamento existente
+                // Actualiza un departamento existente
                 products[this.editingIndex] = newProduct;
                 this.editingIndex = null;
                 this.querySelector('#submit-button').textContent = 'Crear nuevo departamento';
             } else {
-                // Añadir nuevo departamento
+                // Añade un nuevo departamento
                 products.push(newProduct);
             }
             localStorage.setItem('products', JSON.stringify(products));
@@ -104,6 +148,7 @@ class NewDepartment extends HTMLElement {
         }
     }
 
+    // Valida que todos los campos del producto estén completos
     validateProduct(product) {
         return (
             product.city &&
@@ -118,6 +163,7 @@ class NewDepartment extends HTMLElement {
         );
     }
 
+    // Maneja el cambio de la imagen seleccionada
     handleImageChange(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -130,12 +176,14 @@ class NewDepartment extends HTMLElement {
         reader.readAsDataURL(file);
     }
 
+    // Limpia el localStorage
     clearLocalStorage() {
         localStorage.clear();
         console.log('¡LocalStorage limpiado!');
         renderProducts();
     }
 
+    // Carga un producto para edición
     loadProductForEditing(product, index) {
         this.editingIndex = index;
         document.getElementById('city').value = product.city;
@@ -152,15 +200,16 @@ class NewDepartment extends HTMLElement {
     }
 }
 
+// Registra el componente personalizado
 customElements.define('new-department', NewDepartment);
 
-// Select the form and the container where products will be displayed
+// Selecciona el contenedor donde se mostrarán los productos
 const productsContainer = document.querySelector('.container-products');
 
-// Retrieve products from localStorage, or initialize as an empty array if none are found
+// Recupera los productos del localStorage o inicializa como un array vacío
 let products = JSON.parse(localStorage.getItem('products')) || [];
 
-// Function to render products
+// Función para renderizar los productos
 const renderProducts = () => {
     productsContainer.innerHTML = '';
 
@@ -220,5 +269,59 @@ const renderProducts = () => {
     });
 };
 
-// Render products on page load
+// Renderiza los productos al cargar la página
 renderProducts();
+/*En este código específico, la codificación Base64 se utiliza para manejar las imágenes que el usuario sube para cada departamento. Vamos a analizar cómo se implementa:
+
+Manejo de la carga de imágenes:
+
+Cuando un usuario selecciona una imagen para subir, se activa el evento 'change' en el input de tipo file:
+this.querySelector('#image-input').addEventListener('change', this.handleImageChange); linea 14
+
+Conversión a Base64:
+
+La función handleImageChange se encarga de convertir la imagen seleccionada a una cadena Base64:
+handleImageChange(event) { linea 167
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        const imageUrl = event.target.result;
+        localStorage.setItem('productImageUrl', imageUrl);
+    };
+    reader.readAsDataURL(file);
+}
+Aquí es donde ocurre la magia de Base64:
+
+Se crea un objeto FileReader.
+Cuando el archivo se carga completamente, la función onload se ejecuta.
+reader.readAsDataURL(file) lee el contenido del archivo y lo convierte automáticamente en una URL de datos, que es una cadena Base64.
+
+
+Almacenamiento:
+
+La URL de datos (que es la imagen codificada en Base64) se almacena en el localStorage:
+localStorage.setItem('productImageUrl', imageUrl);
+
+Uso de la imagen codificada:
+
+Cuando se crea o actualiza un departamento, la URL de la imagen en Base64 se recupera del localStorage y se incluye en el objeto del producto:
+const newProduct = { linea 119
+    // ... otros campos ...
+    imageUrl: localStorage.getItem('productImageUrl')
+};
+
+Visualización:
+
+Al renderizar los productos, la URL de datos Base64 se usa directamente como src de la imagen:
+const image = document.createElement('img');
+image.src = product.imageUrl;
+La ventaja de usar Base64 en este contexto es que permite almacenar imágenes directamente en el localStorage como cadenas de texto, sin necesidad de subirlas a un servidor. Esto facilita la persistencia local de los datos, incluyendo las imágenes, entre sesiones del navegador.
+Sin embargo, es importante notar que este enfoque tiene limitaciones:
+
+El tamaño de las imágenes Base64 es aproximadamente un 33% mayor que el archivo original.
+Hay límites en la cantidad de datos que se pueden almacenar en localStorage (generalmente alrededor de 5-10 MB).
+No es adecuado para aplicaciones que manejan muchas imágenes o imágenes grandes, ya que podría llenar rápidamente el almacenamiento del navegador.
+
+Para aplicaciones más robustas, sería preferible almacenar las imágenes en un servidor y guardar solo las URL en el localStorage. */

@@ -40,7 +40,6 @@
     </ul>
     <br/>
     <button id="signOut">Cerrar Sesión</button>
-
   </nav>
   <div class="container" id="container">
     <div class="form-container update-container">
@@ -48,7 +47,12 @@
         <h1>Actualizar Datos</h1>
         <input type="email" id="updateEmail" placeholder="Correo electrónico" />
         <span class="message" id="updateEmailError">Tiene que registrar correo</span>
-        <input type="password" id="currentPassword" placeholder="Contraseña Actual" />
+        <input type="text" id="updateName" placeholder="Nombre" />
+        <span class="message" id="updateNameError">Tiene que registrar nombre</span>
+        <input type="text" id="updateLastName" placeholder="Apellido" />
+        <span class="message" id="updateLastNameError">Tiene que registrar apellido</span>
+        <input type="date" id="updateBirthDate" />
+        <span class="message" id="updateBirthDateError">Tiene que registrar fecha de nacimiento</span>
         <input type="password" id="currentPassword" placeholder="Contraseña Actual" />
         <span class="message" id="currentPasswordError">Tiene que registrar la contraseña actual</span>
         <input type="password" id="newPassword" placeholder="Nueva Contraseña" />

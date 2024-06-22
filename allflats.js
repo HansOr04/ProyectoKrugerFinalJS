@@ -1,10 +1,13 @@
-
+// Espera a que el DOM esté completamente cargado antes de ejecutar el script
 document.addEventListener('DOMContentLoaded', () => {
+  // Selecciona elementos del DOM para su uso posterior
   const productsContainer = document.querySelector('.container-products');
   const cityFilter = document.getElementById('city-filter');
   const priceFilter = document.getElementById('price-filter');
   const areaSizeFilter = document.getElementById('area-size-filter');
 
+  // Define un array de productos con sus propiedades
+  
   const products = [
     { id: "1", imageUrl: "https://images.unsplash.com/photo-1603003568133-55b07aaf1860?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
       city:"Quito", sector:"La Mariscal", streetName:"Santa Clara", streetNumber:"S479-458", areaSize:"75 mt", yearBuilt:"1997", rentPrice:"250,00", dateAvailable:"15-07-2024" },
@@ -20,9 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
       city:"Esmeraldas", sector:"Las Peñas", streetName:"Galamitina", streetNumber:"S454-129", areaSize:"200 mt", yearBuilt:"2015", rentPrice:"720,00", dateAvailable:"26-06-2024"}
   ];
 
+  // Obtiene productos adicionales del localStorage o inicializa un array vacío
   let productsLocalStorage = JSON.parse(localStorage.getItem('products')) || [];
+  // Combina los productos predefinidos con los del localStorage
   let TodosProductos = products.concat(productsLocalStorage);
 
+  // Función para obtener los favoritos del usuario actual
   const getCurrentUserFavorites = () => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
@@ -31,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return [];
   };
 
+  // Función para guardar los favoritos del usuario actual
   const setCurrentUserFavorites = (favorites) => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
@@ -38,14 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Inicializa el array de favoritos
   let favorites = getCurrentUserFavorites();
 
+  // Función para mostrar los productos en el HTML
   const showHTML = (filteredProducts) => {
     productsContainer.innerHTML = '';
 
     filteredProducts.forEach(product => {
+      // Verifica si el producto está en favoritos
       const isFavorite = favorites.some(favorite => favorite.id === product.id);
 
+      // Crea el HTML para cada producto
       const productCard = `
         <div class="card-product">
           <div class="container-img">
@@ -71,18 +82,22 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
+      // Añade el producto al contenedor
       productsContainer.innerHTML += productCard;
     });
 
+    // Añade listeners a los botones de favoritos
     addFavoriteListeners();
   };
 
+  // Función para añadir event listeners a los botones de favoritos
   const addFavoriteListeners = () => {
     document.querySelectorAll('.favorite').forEach(button => {
       button.addEventListener('click', toggleFavorite);
     });
   };
 
+  // Función para alternar el estado de favorito de un producto
   const toggleFavorite = (e) => {
     const button = e.currentTarget;
     const productId = button.dataset.productId;
@@ -93,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Añade o quita el producto de favoritos
     const index = favorites.findIndex(favorite => favorite.id === productId);
     if (index > -1) {
       favorites.splice(index, 1);
@@ -102,9 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
       button.querySelector('i').classList.replace('fa-regular', 'fa-solid');
     }
 
+    // Guarda los favoritos actualizados
     setCurrentUserFavorites(favorites);
   };
 
+  // Función para filtrar los productos según los criterios seleccionados
   const filterProducts = () => {
     const selectedCity = cityFilter.value;
     const selectedPrice = parseInt(priceFilter.value);
@@ -118,9 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
              (isNaN(selectedAreaSize) || productAreaSize <= selectedAreaSize);
     });
 
+    // Muestra los productos filtrados
     showHTML(filteredProducts);
   };
 
+  // Función para actualizar las opciones del filtro de ciudades
   const updateCityFilter = () => {
     const cities = [...new Set(TodosProductos.map(product => product.city))];
     cityFilter.innerHTML = '<option value="">Todas las ciudades</option>';
@@ -132,6 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Función para actualizar la lista de todos los productos
   const updateTodosProductos = () => {
     productsLocalStorage = JSON.parse(localStorage.getItem('products')) || [];
     TodosProductos = products.concat(productsLocalStorage);
@@ -139,16 +160,19 @@ document.addEventListener('DOMContentLoaded', () => {
     filterProducts();
   };
 
+  // Añade event listeners a los filtros
   cityFilter.addEventListener('change', filterProducts);
   priceFilter.addEventListener('input', filterProducts);
   areaSizeFilter.addEventListener('change', filterProducts);
 
+  // Escucha cambios en el localStorage
   window.addEventListener('storage', (e) => {
     if (e.key === 'products') {
       updateTodosProductos();
     }
   });
 
+  // Función global para guardar un nuevo producto
   window.saveNewProduct = (newProduct) => {
     newProduct.id = Date.now().toString();
     productsLocalStorage.push(newProduct);
@@ -156,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTodosProductos();
   };
 
+  // Función global para mostrar los productos favoritos
   window.showFavorites = () => {
     const favoriteProducts = TodosProductos.filter(product => 
       favorites.some(favorite => favorite.id === product.id)
@@ -163,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showHTML(favoriteProducts);
   };
 
+  // Inicializa la aplicación
   updateTodosProductos();
   showHTML(TodosProductos);
 });

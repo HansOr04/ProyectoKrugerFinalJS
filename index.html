@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Register</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  </div>
+  
+  <div class="container" id="container">
+    
+    <div class="form-container sign-up-container">
+      
+      <form action="#" id="signUpForm">
+        <h1>Registrarse</h1>
+        <input type="text" id="signUpfirst" placeholder="Primer Nombre"/>
+      
+        <input type="text" id="signUplastname" placeholder="Apellido"/>
+       
+        <input type="email" id="signUpEmail" placeholder="Correo electrónico" />
+      
+        <input type="date" id="singUpdate" placeholder="Fecha"/>
+       
+        <input type="password" id="signUpPassword" placeholder="Contraseña" />
+
+        <p id="span1" style = "color:rgb(183, 50, 50); font-size: 14px;font-family:oblique; display: none; ">Favor completar todos los espacios vacios</p>
+       
+        <span id="span-registro" hidden></span>
+        <br>  
+        <button id="signUpButton" type="submit">Registrarse</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+     
+      <form action="#">
+        <img id= "imag" src = 'Lojo index.png' style="height: 80px; margin-bottom: 10px ;">
+        <h1>Iniciar sesión</h1>
+        <span>o utilice su cuenta</span>
+        <input type="email" id="email" placeholder="Correo electrónico" />
+        <input type="password" id="password" placeholder="Contraseña" />
+        <span class="span1" hidden>Clave no cumple con los caracteres soliictados</span>
+        <button id="signInButton">Iniciar sesión</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>¡Bienvenido de nuevo!</h1>
+          <p>Para mantenerse conectado con nosotros, inicie sesión con sus datos personales</p>
+          <button class="ghost" id="signIn">Iniciar sesión</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>¡Hola, amigo!</h1>
+          <p>Ingrese sus detalles personales y comience su viaje con nosotros</p>
+          <button class="ghost" id="signUp">Registrarse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

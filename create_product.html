@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Department Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="allflats.css">
+    <script src="cerrarsesion.js"></script>
+</head>
+
+<body>
+
+	<nav class="cajaNav">
+    <div class="titNav">
+      <div class="logo-container">
+        <img src="Logo.JPG" alt="imagen logo" width="140px">
+      </div>
+    </div>
+    <br/>
+    <div id="MensajeBienvenida1">
+      <div id="saludo">Bienvenido, <span id="usuario"></span></div>
+    </div>
+    <br/>
+    <ul class="barNav cerrado" id="menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="Allflats.html">All Flats</a></li>
+      <li><a href="create_product.html">New Flats</a></li>
+      <li><a href="update.html">Profile Update</a></li>
+    </ul>
+    <br/>
+    <button id="signOut">Cerrar Sesión</button>
+
+  </nav>
+	
+    <new-department></new-department>
+    <div class="container-products mt-10"></div>
+    <button id="clearStorage" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Clear Storage</button>
+
+    <script src="create_product.js">  </script>
+    <script src="mensaje.js"></script>
+</body>
+
+</html>

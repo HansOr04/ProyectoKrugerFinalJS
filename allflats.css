@@ -1,0 +1,334 @@
+/* ----------------------------------- */
+/*              RESET GLOBAL           */
+/* ----------------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* ----------------------------------- */
+/*              HEADER                 */
+/* ----------------------------------- */
+
+/* CSS Document */
+:root{
+   --color: white;
+   --fnd: #000000;
+   --fndRsp: white;
+   --colorRsp: rgb(0, 0, 0);
+}
+
+.cajaNav {
+   font-family:Georgia, 'Times New Roman', Times, serif;
+   display: flex;
+   justify-content: space-between;
+   background:rgb(9, 9, 9);
+   color: rgb(163, 165, 168);
+   font-size: 18spx;
+}
+
+.cajaNav .barNav {
+   margin: 0 10px 0 0;
+}
+
+.cajaNav .titNav {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex: 1;
+   background: var(--fnd);
+   color: var(--color);
+   height: auto;
+}
+
+.cajaNav .logo-container {
+   display: flex;
+   align-items: center;
+}
+
+.cajaNav .logo-container .logo-image {
+   height: auto;
+}
+
+.cajaNav .logo-container .logo {
+   margin-left: 10px;
+}
+
+.cajaNav .titNav .toggle {
+   display: -ms-flexbox;
+}
+
+.cajaNav .barNav {
+   display: flex;
+   list-style: none;
+   align-items: center;
+   padding: 20px;
+   height: 80px;
+}
+
+.cajaNav .barNav li {
+   display: flex;
+   align-items: center;
+   padding: 0 20px;
+   height: 100%;
+}
+
+.cajaNav .barNav li:hover {
+   background:rgb(73, 183, 39);
+   color: rgb(44, 93, 62);
+   cursor: pointer;
+   border-radius: 5px;
+}
+
+.cajaNav .barNav li a {
+   text-decoration: none;
+   cursor: pointer;
+   color: inherit;
+}
+
+/* ----------------------------------- */
+/*        COUNTER FAVORITE/CART        */
+/* ----------------------------------- */
+
+.counter-favorite {
+    font-size: 10px;
+    position: absolute;
+    background-color: orange;
+    color: #000;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+}
+
+/* ----------------------------------- */
+/*            CONTAINER                */
+/* ----------------------------------- */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    padding-top: 20px;
+}
+
+/* ----------------------------------- */
+/*         CONTAINER PRODUCTS          */
+/* ----------------------------------- */
+
+.container-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 30px 0;
+    gap: 30px;
+}
+
+/* ----------------------------------- */
+/*          CARD PRODUCT               */
+/* ----------------------------------- */
+
+.card-product {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.content-card-product {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 25px;
+}
+
+.container-img {
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.container-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.footer-card-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 24px;
+    color: #555;
+}
+
+.container-buttons-card {
+    display: flex;
+    gap: 20px;
+}
+
+.container-buttons-card button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #e5e1e125;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.container-buttons-card button:hover {
+    transform: scale(1.1);
+}
+
+/* ----------------------------------- */
+/*               MENU                  */
+/* ----------------------------------- */
+
+.navbar-menu {
+    background-color: #000;
+    margin: 2% auto;
+    max-width: 1000px;
+    width: calc(100%);
+}
+
+.navbar-menu .menu {
+    display: block;
+    text-align: center;
+}
+
+.navbar-menu .menu li {
+    display: inline-block;
+}
+
+.navbar-menu .menu li:hover > .submenu {
+    display: block;
+    -webkit-animation-name: showSubMenu;
+    -webkit-animation-duration: .4s;
+}
+
+.navbar-menu .menu li ul {
+    background-color: #000;
+    display: none;
+    position: absolute;
+}
+
+.navbar-menu .menu li ul li {
+    display: block;
+}
+
+.navbar-menu .menu li ul li a:active {
+    -webkit-animation-name: hideSubMenu;
+    -webkit-animation-duration: .4s;
+}
+
+/* ----------------------------------- */
+/*        LISTA DE FAVORITOS           */
+/* ----------------------------------- */
+
+.container-list-favorites {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translateX(400px);
+    background-color: #555;
+    opacity: 0;
+    width: 400px;
+    height: 100vh;
+    transition: all 0.5s linear;
+}
+
+.container-list-favorites.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.header-favorite {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-favorite i {
+    cursor: pointer;
+}
+
+.list-favorites {
+    padding: 35px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.card-favorite {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px #00000065;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.card-favorite .title {
+    color: #000;
+    flex: 1;
+}
+
+.card-favorite p:last-child {
+    font-weight: 700;
+    font-size: 22px;
+    color: #000;
+}
+
+/* ----------------------------------- */
+/*            FAVORITE ICONS           */
+/* ----------------------------------- */
+
+#favorite-regular.active {
+    color: red; /* Cambia el color del ícono a blanco cuando está activo */
+     /* Cambia el color de fondo del botón a rojo cuando está activo */ /* Añade un borde rojo al botón cuando está activo */
+}
+
+/* Mobile styles */
+.container-products {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+    .container-products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+    .container-products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+.saludo{
+    text-align: center;
+}

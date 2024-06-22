@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
+
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+}
+body,
+html {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    height: 100%;
+}
+
+/* Estilos de navegación */
+/* CSS Document */
+:root{
+    --color:white;
+    --fnd : #1b0202;
+    --fndRsp: white;
+    --colorRsp: black;
+ }
+ .cajaNav{
+    font-family: sans-serif;
+    display:flex;
+    justify-content: space-between;
+    background:var(--fnd);
+    color: var(--color);
+    position: absolute;
+ }
+ .cajaNav .barNav{
+    margin:0 10px 0 0;
+ }
+ .cajaNav .titNav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex: 1;
+    background:var(--fnd);
+    color:var(--color);
+    height:auto;
+ } 
+ .cajaNav .titNav .toggle{
+    display:none;
+ }
+ .cajaNav .titNav .logo{
+    margin: 10px 10px;
+ }
+ .cajaNav .barNav {
+    display:flex;
+    list-style:none;
+    align-items: center;
+    padding:0;
+ }
+ .cajaNav .barNav li{
+    display:flex;
+    align-items:center;
+    padding: 0 20px ;
+    height:100%; 
+ }
+ .cajaNav .barNav li:hover{
+    background: var(--color);
+    color:var(--fnd);
+    cursor: pointer;
+ }
+ .cajaNav .barNav li a{
+    text-decoration: none;
+    cursor: pointer;
+    color:inherit;
+ }
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Formulario */
+#product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+#product-form label {
+    font-weight: bold;
+}
+
+#product-form input,
+#product-form textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#product-form button[type="submit"] {
+    padding: 10px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#product-form button[type="submit"]:hover {
+    background-color: #333;
+}
+
+/* Contenedor de productos */
+.container-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Tarjeta de producto */
+.card-product {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-product h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card-product p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+.container-img {
+    height: 150px; /* Altura deseada */
+    width: 100%; /* Ancho máximo para que se ajuste al contenedor */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.container-img img {
+    width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Escala la imagen para que cubra todo el contenedor sin distorsionarse */
+}
+
+/* Botón de borrar datos */
+#clearStorage {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f00;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#clearStorage:hover {
+    background-color: #d00;
+}

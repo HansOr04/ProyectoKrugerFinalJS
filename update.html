@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualizar Datos</title>
+  <link rel="stylesheet" href="update.css">
+  <link rel="stylesheet" href="allflats.css">
+  <script src="cerrarsesion.js"></script>
+  <style>
+    .message {
+      display: none;
+      color: red;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
+    .message.show {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <nav class="cajaNav">
+    <div class="titNav">
+      <div class="logo-container">
+        <img src="Logo.JPG" alt="imagen logo" width="140px">
+      </div>
+    </div>
+    <br/>
+    <div id="MensajeBienvenida1">
+      <div id="saludo">Bienvenido, <span id="usuario"></span></div>
+    </div>
+    <br/>
+    <ul class="barNav cerrado" id="menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="Allflats.html">All Flats</a></li>
+      <li><a href="create_product.html">New Flats</a></li>
+      <li><a href="update.html">Profile Update</a></li>
+    </ul>
+    <br/>
+    <button id="signOut">Cerrar Sesión</button>
+
+  </nav>
+  <div class="container" id="container">
+    <div class="form-container update-container">
+      <form id="updateForm">
+        <h1>Actualizar Datos</h1>
+        <input type="email" id="updateEmail" placeholder="Correo electrónico" />
+        <span class="message" id="updateEmailError">Tiene que registrar correo</span>
+        <input type="password" id="currentPassword" placeholder="Contraseña Actual" />
+        <input type="password" id="currentPassword" placeholder="Contraseña Actual" />
+        <span class="message" id="currentPasswordError">Tiene que registrar la contraseña actual</span>
+        <input type="password" id="newPassword" placeholder="Nueva Contraseña" />
+        <span class="message" id="newPasswordError">Tiene que registrar nueva contraseña</span>
+        <input type="password" id="confirmPassword" placeholder="Confirmar Nueva Contraseña" />
+        <span class="message" id="confirmPasswordError">Las contraseñas no coinciden</span>
+        <div id="validationMessage" class="message"></div>
+        <button type="button" id="updateButton">Actualizar</button>
+      </form>
+    </div>
+  </div>
+  <script src="update.js"></script>
+  <script src="mensaje.js"></script>
+</body>
+</html>

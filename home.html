@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Favoritos</title>
+  <link rel="stylesheet" href="allflats.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script src="cerrarsesion.js"></script>
+</head>
+<body>
+  <nav class="cajaNav">
+    <div class="titNav">
+      <div class="logo-container">
+        <img src="Logo.JPG" alt="imagen logo" width="140px">
+      </div>
+    </div>
+    <br/>
+    <div id="MensajeBienvenida1">
+      <div id="saludo">Bienvenido, <span id="usuario"></span></div>
+    </div>
+    <br/>
+    <ul class="barNav cerrado" id="menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="Allflats.html">All Flats</a></li>
+      <li><a href="create_product.html">New Flats</a></li>
+      <li><a href="update.html">Profile Update</a></li>
+    </ul>
+    <br/>
+    <button id="signOut">Cerrar Sesión</button>
+
+  </nav>
+
+  <div class="container">
+    <h1>Mis Favoritos</h1>
+    <div class="container-products"></div>
+    <script src="home.js"></script>
+  </div>
+  <div class="container">
+    <h1>Tus creaciones</h1>
+    <div class="container-product"></div>
+    <script src="userproductos.js"></script>
+  </div>
+  <script src="mensaje.js"></script>
+</body>
+</html>

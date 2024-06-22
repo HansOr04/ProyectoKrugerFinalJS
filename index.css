@@ -1,0 +1,303 @@
+/* Importa la fuente "Montserrat" desde Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+/* Establece el box-sizing para todos los elementos y pseudo-elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilos generales para el body */
+body {
+    background: #f6f5f7; /* Color de fondo */
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-direction: column; /* Apila los elementos en columna */
+    font-family: "Montserrat", sans-serif; /* Fuente principal */
+    height: 100vh; /* Altura completa de la ventana */
+    margin: -20px 0 50px; /* Margen negativo superior e inferior */
+}
+
+/* Formatos de imagen*/
+#imag{ 
+    margin: 20px 0 10px;
+    padding: 5px;
+    display: -webkit-inline-flex;
+
+}
+
+/* Estilos para los títulos h1 */
+h1 {
+    font-weight: bold; /* Texto en negrita */
+    margin: 0; /* Sin margen */
+}
+
+/* Estilos para los títulos h2 */
+h2 {
+    text-align: center; /* Texto centrado */
+}
+
+/* Estilos para los párrafos */
+p {
+    font-size: 14px; /* Tamaño de fuente */
+    font-weight: 100; /* Peso de fuente ligero */
+    line-height: 20px; /* Altura de línea */
+    letter-spacing: 0.5px; /* Espaciado entre letras */
+    margin: 20px 0 30px; /* Margen superior e inferior */
+}
+
+/* Estilos para los spans */
+span {
+    font-size: 12px; /* Tamaño de fuente */
+}
+
+/* Estilos para los enlaces */
+a {
+    color: #749a7a; /* Color del texto */
+    font-size: 14px; /* Tamaño de fuente */
+    text-decoration: none; /* Sin subrayado */
+    margin: 15px 0; /* Margen superior e inferior */
+}
+
+/* Estilos para los botones */
+button {
+    border-radius: 20px; /* Bordes redondeados */
+    border: 1px solid #79827e; /* Borde de color */
+    background-color: #73ae74; /* Color de fondo */
+    color: #ffffffd2; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    padding: 12px 45px; /* Relleno */
+    letter-spacing: 1px; /* Espaciado entre letras */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    transition: transform 80ms ease-in; /* Transición de transformación */
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* Efecto de clic para los botones */
+button:active {
+    transform: scale(0.95); /* Reduce ligeramente el tamaño */
+}
+
+/* Quita el borde de enfoque para los botones */
+button:focus {
+    outline: none; /* Sin borde de enfoque */
+}
+
+/* Estilo para los botones con clase "ghost" */
+button.ghost {
+    background-color: transparent; /* Fondo transparente */
+    border-color: #ffffff; /* Color del borde */
+}
+
+/* Estilos para los formularios */
+form {
+    background-color: #ffffff; /* Color de fondo */
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column; /* Apila en columna */
+    padding: 0 50px 80px; /* Relleno lateral */
+    height: 100%; /* Altura completa */
+    text-align: center; /* Texto centrado */
+    font-family:Georgia, 'Times New Roman', Times, serif;   
+}
+
+/* Estilos para los inputs */
+input {
+    background-color: #eee; /* Color de fondo */
+    border: none; /* Sin borde */
+    padding: 12px 15px; /* Relleno */
+    margin: 8px 0; /* Margen vertical */
+    width: 100%; /* Ancho completo */
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    
+    background-color: #fff; /* Color de fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 14px 28px rgba(92, 131, 103, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); /* Sombra */
+    position: relative; /* Posicionamiento relativo */
+    overflow: hidden; /* Oculta el desbordamiento */
+    width: 768px; /* Ancho */
+    max-width: 100%; /* Ancho máximo */
+    min-height: 480px; /* Altura mínima */
+}
+
+#ImagenLogo{
+    width: 110px; position: fixed;
+    margin: 40px 0 50px 145px;
+    
+}
+
+/* Estilos para el contenedor de formularios */
+.form-container {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 0; /* Al tope */
+    height: 100%; /* Altura completa */
+    transition: all 0.6s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para el contenedor de iniciar sesión */
+.sign-in-container {
+    left: 0; /* A la izquierda */
+    width: 50%; /* Ancho del 50% */
+    z-index: 2; /* Nivel de pila */
+}
+
+/* Estilos para activar el panel derecho del contenedor de iniciar sesión */
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%); /* Mueve hacia la derecha */
+}
+
+/* Estilos para el contenedor de registrarse */
+.sign-up-container {
+    left: 0; /* A la izquierda */
+    width: 50%; /* Ancho del 50% */
+    opacity: 0; /* Opacidad */
+    z-index: 1; /* Nivel de pila */
+}
+
+/* Estilos para activar el panel derecho del contenedor de registrarse */
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%); /* Mueve hacia la derecha */
+    opacity: 1; /* Opacidad completa */
+    z-index: 5; /* Nivel de pila */
+    animation: show 0.6s; /* Animación */
+}
+
+/* Animación para mostrar los contenedores */
+@keyframes show {
+    0%, 49.99% {
+        opacity: 0; /* Opacidad inicial */
+        z-index: 1; /* Nivel de pila inicial */
+    }
+    50%, 100% {
+        opacity: 1; /* Opacidad completa */
+        z-index: 5; /* Nivel de pila final */
+    }
+}
+
+/* Estilos para el contenedor de la superposición */
+.overlay-container {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 0; /* Al tope */
+    left: 50%; /* Centrado a la izquierda */
+    width: 50%; /* Ancho del 50% */
+    height: 100%; /* Altura completa */
+    overflow: hidden; /* Oculta el desbordamiento */
+    transition: transform 0.6s ease-in-out; /* Transición suave */
+    z-index: 100; /* Nivel de pila */
+}
+
+/* Estilos para activar el panel derecho del contenedor de la superposición */
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%); /* Mueve hacia la izquierda */
+}
+
+/* Estilos para la superposición */
+.overlay {
+    background: #197d34; /* Color de fondo degradado */
+    background: -webkit-linear-gradient(to right, #0fb13d, #5a7d63); /* Degradado para Webkit */
+    background: linear-gradient(to right, #40954d, #4b8457); /* Degradado */
+    background-repeat: no-repeat; /* Sin repetición */
+    background-size: cover; /* Cubrir completamente */
+    background-position: 0 0; /* Posición de fondo */
+    color: #ffffff; /* Color del texto */
+    position: relative; /* Posicionamiento relativo */
+    left: -100%; /* Mueve hacia la izquierda */
+    height: 100%; /* Altura completa */
+    width: 200%; /* Ancho del 200% */
+    transform: translateX(0); /* Sin mover */
+    transition: transform 0.6s ease-in-out; /* Transición suave */
+}
+
+/* Estilos para activar el panel derecho de la superposición */
+.container.right-panel-active .overlay {
+    transform: translateX(50%); /* Mueve hacia la derecha */
+}
+
+/* Estilos para el panel de la superposición */
+.overlay-panel {
+    position: absolute; /* Posicionamiento absoluto */
+    display: flex; /* Usa flexbox */
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    flex-direction: column; /* Apila en columna */
+    padding: 0 40px; /* Relleno lateral */
+    text-align: center; /* Texto centrado */
+    top: 0; /* Al tope */
+    height: 100%; /* Altura completa */
+    width: 50%; /* Ancho del 50% */
+    transform: translateX(0); /* Sin mover */
+    transition: transform 0.6s ease-in-out; /* Transición suave */
+    font-family:Georgia, 'Times New Roman', Times, serif; 
+}
+
+/* Estilos para el panel izquierdo de la superposición */
+.overlay-left {
+    transform: translateX(-20%); /* Mueve hacia la izquierda */
+}
+
+/* Estilos para activar el panel derecho del panel izquierdo de la superposición */
+.container.right-panel-active .overlay-left {
+    transform: translateX(0); /* Sin mover */
+}
+
+/* Estilos para el panel derecho de la superposición */
+.overlay-right {
+    right: 0; /* A la derecha */
+    transform: translateX(0); /* Sin mover */
+}
+
+/* Estilos para activar el panel derecho del panel derecho de la superposición */
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%); /* Mueve hacia la derecha */
+}
+
+/* Estilos para el contenedor social */
+.social-container {
+    margin: 20px 0; /* Margen vertical */
+}
+
+/* Estilos para los enlaces sociales */
+.social-container a {
+    border: 1px solid #dddddd; /* Borde */
+    border-radius: 50%; /* Bordes redondeados */
+    display: inline-flex; /* Flexbox en línea */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 0 5px; /* Margen lateral */
+    height: 40px; /* Altura */
+    width: 40px; /* Ancho */
+}
+
+/* Estilos para el pie de página */
+footer {
+    background-color: #222; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    font-size: 14px; /* Tamaño de fuente */
+    bottom: 0; /* Al fondo */
+    position: fixed; /* Posición fija */
+    left: 0; /* A la izquierda */
+    right: 0; /* A la derecha */
+    text-align: center; /* Texto centrado */
+    z-index: 999; /* Nivel de pila */
+}
+
+/* Estilos para los párrafos en el pie de página */
+footer p {
+    margin: 10px 0; /* Margen vertical */
+}
+
+/* Estilos para los iconos en el pie de página */
+footer i {
+    color: red; /* Color rojo */
+}
+
+/* Estilos para los enlaces en el pie de página */
+footer a {
+    color: #3c97bf; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+}
